@@ -18,7 +18,7 @@
 
     <application
         android:allowBackup="false"
-        android:debuggable="true"
+        android:debuggable="false"
         android:extractNativeLibs="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -62,3 +62,4 @@
         </receiver>
     </application>
 </manifest>
+
