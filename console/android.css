@@ -1,0 +1,66 @@
+:root{--ago-paper:#F2F0EB;--ago-hi:#FBFAF7;--ago-ink:#14171C;--ago-ink2:#59606C;--ago-ink3:#9AA1AC;--ago-rule:rgba(20,23,28,.14);--ago-accent:#0EA47A;--ago-bad:#C2410C}
+.ago-top{display:flex;align-items:center;gap:8px;margin-left:auto;padding:0 6px;font:500 13px/1.1 var(--font,sans-serif);color:var(--ago-ink2)}
+.ago-top .ago-dot{width:6px;height:6px;border-radius:50%;background:var(--ago-ink3)}
+.ago-top.on .ago-dot{background:var(--ago-accent)}
+.ago-top .ago-state small{display:block;font:400 10px/1.3 var(--mono,monospace);color:var(--ago-ink3)}
+.ago-switch{position:relative;width:60px;height:34px;border-radius:999px;border:1px solid var(--ago-rule);background:#E4E1DA;padding:0;flex:none;transition:background .18s ease-out}
+.ago-switch .ago-knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .2s cubic-bezier(.4,0,.2,1)}
+.ago-top.on .ago-switch,.ago-switch.on{background:var(--ago-accent);border-color:var(--ago-accent)}
+.ago-top.on .ago-switch .ago-knob,.ago-switch.on .ago-knob{transform:translateX(26px)}
+.ago-switch.small{width:48px;height:28px}
+.ago-switch.small .ago-knob{width:20px;height:20px}
+.ago-switch.small.on .ago-knob{transform:translateX(20px)}
+.ago-tab{font:500 13px/1 var(--font,sans-serif)}
+.ago-page{display:none;position:fixed;left:0;right:0;overflow:auto;background:var(--ago-paper);z-index:900;padding:16px 16px 40px}
+.ago-page.open{display:block}
+.ago-hero h3{font:700 26px/1.15 var(--font,sans-serif);letter-spacing:-.01em;text-transform:none;margin:8px 0 6px;color:var(--ago-ink)}
+.ago-card{background:var(--ago-hi);border:1px solid var(--ago-rule);border-radius:10px;padding:16px;margin-bottom:16px}
+.ago-card h3{margin:0 0 4px;font:600 13px/1.4 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:var(--ago-ink3)}
+.ago-note{margin:0 0 12px;color:var(--ago-ink2);font:400 13px/1.6 var(--font,sans-serif)}
+.ago-proto{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--ago-rule)}
+.ago-proto:first-of-type{border-top:0}
+.ago-proto-l{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.ago-proto-l b{font:600 14px/1.3 var(--font,sans-serif);color:var(--ago-ink)}
+.ago-mono{font:400 12px/1.5 var(--mono,monospace);color:var(--ago-ink3);word-break:break-all}
+.ago-input{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--ago-rule);border-radius:6px;background:var(--ago-paper);color:var(--ago-ink);font:400 15px/1.3 var(--font,sans-serif)}
+.ago-port{max-width:120px;margin-top:2px}
+.ago-form{display:flex;gap:8px;margin:4px 0 8px}
+.ago-primary{flex:none;padding:0 18px;border:0;border-radius:6px;background:var(--ago-ink);color:var(--ago-hi);font:600 14px/1 var(--font,sans-serif)}
+.ago-out{margin:12px 0;padding:12px;border-radius:6px;background:var(--ago-paper);border:1px solid var(--ago-rule);font:400 12px/1.55 var(--mono,monospace);white-space:pre-wrap;word-break:break-all}
+.ago-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.ago-keycard{border:1px solid var(--ago-rule);border-radius:10px;padding:14px;background:var(--ago-paper)}
+.ago-keyhead{display:flex;align-items:center;gap:8px}
+.ago-keyname{font:600 16px/1.3 var(--font,sans-serif);color:var(--ago-ink)}
+.ago-badge{margin-left:auto;padding:2px 8px;border-radius:999px;font:600 11px/1.6 var(--mono,monospace);letter-spacing:.06em}
+.ago-badge.on{color:var(--ago-accent);background:rgba(14,164,122,.10)}
+.ago-badge.off{color:var(--ago-ink3);background:rgba(20,23,28,.06)}
+.ago-keyid{margin-top:4px}
+.ago-keytest{margin-top:8px;font:400 12px/1.4 var(--mono,monospace);color:var(--ago-ink2)}
+.ago-keytest.bad{color:var(--ago-bad)}
+.ago-actions{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.ago-act{appearance:none;border:1px solid var(--ago-rule);background:var(--ago-hi);color:var(--ago-ink);border-radius:999px;padding:8px 12px;min-height:36px;font:600 12px/1 var(--font,sans-serif)}
+.ago-act:active{opacity:.6}
+.ago-act.danger{color:var(--ago-bad)}
+.ago-link{appearance:none;border:0;background:none;padding:8px 4px;min-height:36px;color:var(--ago-ink2);font:600 13px/1.2 var(--font,sans-serif)}
+.ago-wb{margin:0 0 16px;padding:14px 16px;background:var(--ago-hi);border:1px solid var(--ago-rule);border-radius:10px}
+.ago-wbname{font:600 14px/1.3 var(--font,sans-serif);color:var(--ago-ink);margin-bottom:8px}
+.ago-wbsaid{margin-top:8px;font:400 12px/1.5 var(--mono,monospace);color:var(--ago-ink2)}
+@media (max-width:600px){.ago-hero h3{font-size:24px}.ago-input{font-size:16px}}
+/* hero overrides the section-label style */
+.ago-card.ago-hero{background:transparent;border:0;padding:4px 4px 0}
+.ago-card.ago-hero h3{font:700 26px/1.1 var(--font,sans-serif);letter-spacing:-.01em;text-transform:none;color:var(--ago-ink);margin:6px 0 8px}
+.ago-card.ago-hero .ago-note{max-width:36em}
+.ago-wb{margin:0 0 12px;padding:0 4px 12px;border-bottom:1px solid var(--ago-rule);background:none}
+.ago-line{display:flex;align-items:center;gap:12px;padding:8px 0}
+.ago-lbl{font:500 13px/1.2 var(--font,sans-serif);color:var(--ago-ink2)}
+.ago-accs{display:flex;flex-direction:column;gap:6px;padding-top:4px}
+.ago-accrow{display:flex;align-items:center;gap:8px}
+.ago-acclbl{flex:1;min-width:0;font:500 13px/1.3 var(--font,sans-serif);color:var(--ago-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ago-mini{appearance:none;border:1px solid var(--ago-rule);background:var(--ago-hi);color:var(--ago-ink);border-radius:6px;min-width:34px;min-height:32px;font:600 12px/1 var(--font,sans-serif)}
+.ago-mini:disabled{opacity:.35}
+.ago-mini.danger{color:var(--ago-bad)}
+.ago-wb{margin:8px 0 0;padding:0 4px;border:0;background:none}
+.ago-cardcheck{display:flex;align-items:center;gap:12px;padding:6px 4px 0;margin-top:-6px}
+/* check-in row reads as the card's own last line */
+.ago-cardcheck{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-9px 0 0;padding:10px 18px 12px;background:var(--ago-hi);border:1px solid var(--ago-rule);border-top:0;border-radius:0 0 12px 12px}
+.ago-cardcheck .ago-lbl{font:400 13px/1.3 var(--font,sans-serif);color:var(--ago-ink3);letter-spacing:.02em}
