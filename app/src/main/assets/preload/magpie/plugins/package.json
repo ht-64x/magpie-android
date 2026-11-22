@@ -1,0 +1,7 @@
+{
+  "name": "magpie-plugins",
+  "private": true,
+  "dependencies": {
+    "@magpie-community/opencode-workbuddy-auth": "0.2.37"
+  }
+}

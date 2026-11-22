@@ -1,0 +1,7 @@
+build/
+*.apk
+*.keystore
+*.log
+app/src/main/jniLibs/
+app/src/main/assets/preload/bun/
+app/src/main/assets/preload/magpie/plugins/node_modules/

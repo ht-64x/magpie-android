@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    {
+      "spec": "@magpie-community/opencode-workbuddy-auth@0.2.37"
+    }
+  ]
+}

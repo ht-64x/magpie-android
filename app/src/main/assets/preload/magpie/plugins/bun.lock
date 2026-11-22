@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "magpie-plugins",
+      "dependencies": {
+        "@magpie-community/opencode-workbuddy-auth": "0.2.37",
+      },
+    },
+  },
+  "packages": {
+    "@magpie-community/opencode-workbuddy-auth": ["@magpie-community/opencode-workbuddy-auth@0.2.37", "https://registry.npmmirror.com/@magpie-community/opencode-workbuddy-auth/-/opencode-workbuddy-auth-0.2.37.tgz", {}, "sha512-z2rue4cQ01AkXHnC6K1DX8F2ygxKJO+Mb6Uiqgjl0Cy8+k3CyI0UyJWo3Wcfy1rhqZVVYhVm7gq+aV5Yeclnmw=="],
+  }
+}
