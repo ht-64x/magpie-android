@@ -3,7 +3,7 @@
 param(
     [string]$Sdk = $(if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { Join-Path $env:LOCALAPPDATA "Android\Sdk" }),
     [string]$BuildTools = "34.0.0",
-    [string]$CoreSo = (Join-Path $PSScriptRoot "..\magpie-src\magpie-main\dist\magpie-android-arm64"),
+[string]$CoreSo = (Join-Path $PSScriptRoot "..\\magpie-src\\magpie-main\\dist\\magpie-android-arm64")
     [string]$Out = "D:\study data\ht.ai\magpie-lite\build\magpie-lite.apk"
 )
 $ErrorActionPreference = "Stop"
@@ -84,4 +84,5 @@ $size = [math]::Round((Get-Item $Out).Length / 1MB, 1)
 Write-Host ""
 Write-Host "APK: $Out ($size MB)"
 & (Join-Path $bt "apksigner.bat") verify --print-certs $Out | Select-Object -First 3 | Write-Host
+
 
