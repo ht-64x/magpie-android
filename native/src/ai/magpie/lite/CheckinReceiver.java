@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,4 +22,5 @@ public class CheckinReceiver extends BroadcastReceiver {
         }, "magpie-checkin").start();
     }
 }
+
 

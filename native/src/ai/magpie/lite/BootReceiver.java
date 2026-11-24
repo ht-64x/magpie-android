@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,10 +11,11 @@ public class BootReceiver extends BroadcastReceiver {
         SharedPreferences sp = context.getSharedPreferences("magpie", Context.MODE_PRIVATE);
         if (!sp.getBoolean("autostart", false)) return;
         try {
-            ai.magpie.app.CheckinScheduler.sync(context);
+            ai.magpie.lite.CheckinScheduler.sync(context);
             GatewayService.start(context);
         } catch (Throwable ignored) {
         }
     }
 }
+
 

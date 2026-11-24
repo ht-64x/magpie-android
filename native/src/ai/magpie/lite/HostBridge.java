@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -343,4 +343,5 @@ public class HostBridge {
         });
     }
 }
+
 

@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -54,4 +54,5 @@ public final class CheckinScheduler {
         return c.getSharedPreferences("magpie", Context.MODE_PRIVATE);
     }
 }
+
 

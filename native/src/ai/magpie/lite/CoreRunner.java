@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -64,7 +64,8 @@ public final class CoreRunner {
 
     public String state() { return state; }
     public String detail() { return detail; }
-    public boolean isRunning() { return proc != null && proc.isAlive(); }
+    private volatile boolean attached;
+    public boolean isRunning() { return (proc != null && proc.isAlive()) || attached; }
     public String apiBase() { return "http://127.0.0.1:" + port() + "/v1"; }
     public String consoleUrl() { return consoleUrl(null); }
 
@@ -77,6 +78,13 @@ public final class CoreRunner {
     public synchronized void start() {
         if (isRunning()) return;
         seed();
+        // 已有实例在跑（含上次没退干净的）：直接复用，别再起一个抢 3430
+        if (open(port()) && open(WEB_PORT)) {
+            attached = true;
+            setState("运行中", "复用已在运行的实例");
+            append("# 复用 " + port() + " / " + WEB_PORT);
+            return;
+        }
         File bin = binary();
         if (bin == null) {
             setState("失败", "APK 里没有 libmagpiecore.so（lib/arm64-v8a）");
@@ -107,6 +115,7 @@ public final class CoreRunner {
     }
 
     public synchronized void stop() {
+        attached = false;
         Process p = proc;
         proc = null;
         if (p != null) {
@@ -385,4 +394,3 @@ public final class CoreRunner {
         return sb.toString();
     }
 }
-

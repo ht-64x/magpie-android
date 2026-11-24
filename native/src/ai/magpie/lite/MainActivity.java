@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -228,7 +228,19 @@ public class MainActivity extends Activity {
                 head.addView(Ui.pillTag(this, p.models + " 个模型", Ui.ACCENT));
                 card.addView(head);
                 Ui.space(card, this, 6);
-                card.addView(Ui.mono(this, p.host.isEmpty() ? "—" : p.host, 11, Ui.INK3));
+                card.addView(Ui.mono(this, p.host.isEmpty() ? "插件提供 · 点开编辑" : p.host, 11, Ui.INK3));
+                final String pid = p.id;
+                card.setOnClickListener(v -> {
+                    if (pid.startsWith("workbuddy")) {
+                        Intent pi = new Intent(this, ProviderEditActivity.class);
+                        pi.putExtra("id", pid);
+                        startActivity(pi);
+                    } else {
+                        Intent ci = new Intent(this, ConsoleActivity.class);
+                        ci.putExtra("url", CoreRunner.get(this).consoleUrl() + "&view=providers&edit=" + pid);
+                        startActivity(ci);
+                    }
+                });
                 b.addView(card);
             }
         }
@@ -258,7 +270,8 @@ public class MainActivity extends Activity {
             top.addView(Ui.pillTag(this, k.off ? "已停用" : "启用", k.off ? Ui.INK3 : Ui.ACCENT));
             card.addView(top);
             Ui.space(card, this, 4);
-            card.addView(Ui.mono(this, k.id, 11, Ui.INK3));
+            String tail = k.secret.length() >= 8 ? k.secret.substring(k.secret.length() - 8) : k.id;
+            card.addView(Ui.mono(this, "sk-…" + tail, 11, Ui.INK3));
             Ui.space(card, this, 10);
             LinearLayout acts = Ui.row(this);
             Button del = Ui.pill(this, "删除", false);
@@ -268,8 +281,26 @@ public class MainActivity extends Activity {
                 show(2);
             });
             Button test = Ui.pill(this, "测试", true);
-            test.setOnClickListener(v -> test(k.id, test));
+            final String secret = k.secret;
+            test.setOnClickListener(v -> {
+                test.setText("测试中…");
+                new Thread(() -> {
+                    final String r = Data.testKey(this, secret);
+                    ui.post(() -> {
+                        test.setText("测试");
+                        toast(r);
+                    });
+                }).start();
+            });
+            Button sw = Ui.pill(this, k.off ? "启用" : "停用", false);
+            sw.setOnClickListener(v -> {
+                Data.toggleKey(this, k.id, !k.off);
+                toast(k.off ? "已启用" : "已停用");
+                show(2);
+            });
             acts.addView(test);
+            acts.addView(Ui.text(this, "  ", 6, Ui.INK3, false));
+            acts.addView(sw);
             acts.addView(Ui.text(this, "  ", 6, Ui.INK3, false));
             acts.addView(del);
             card.addView(acts);
@@ -304,16 +335,7 @@ public class MainActivity extends Activity {
         return s;
     }
 
-    private void test(String keyId, Button btn) {
-        btn.setText("测试中…");
-        new Thread(() -> {
-            String out = CoreRunner.get(this).exec(new String[] { "gateway-key", "show", keyId });
-            ui.post(() -> {
-                btn.setText("测试");
-                toast(out.length() > 200 ? "看诊断日志" : out.trim());
-            });
-        }).start();
-    }
+
 
     // ---------- 设置 ----------
     private View settingsView() {
@@ -402,3 +424,4 @@ public class MainActivity extends Activity {
         show(tab);
     }
 }
+

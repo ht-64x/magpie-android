@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -123,3 +123,4 @@ public final class Ui {
         parent.addView(v);
     }
 }
+

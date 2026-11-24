@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -58,7 +58,9 @@ public class ConsoleActivity extends Activity {
     }
 
     private void load() {
-        web.loadUrl(CoreRunner.get(this).consoleUrl(getIntent() == null ? null : getIntent().getStringExtra("view")));
+        String direct = getIntent() == null ? null : getIntent().getStringExtra("url");
+        web.loadUrl(direct != null ? direct
+                : CoreRunner.get(this).consoleUrl(getIntent() == null ? null : getIntent().getStringExtra("view")));
     }
 
     /** The first paint can land before the gateway listens: ask again. */
@@ -89,4 +91,5 @@ public class ConsoleActivity extends Activity {
         super.onDestroy();
     }
 }
+
 

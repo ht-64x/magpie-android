@@ -1,4 +1,4 @@
-package ai.magpie.app;
+package ai.magpie.lite;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,8 +16,8 @@ import android.os.PowerManager;
 /** Keeps the Go gateway alive while the app is in the background. */
 public class GatewayService extends Service {
 
-    public static final String ACTION_START = "ai.magpie.app.START";
-    public static final String ACTION_STOP = "ai.magpie.app.STOP";
+    public static final String ACTION_START = "ai.magpie.lite.START";
+    public static final String ACTION_STOP = "ai.magpie.lite.STOP";
     private static final String CHANNEL = "magpie.gateway";
     private static final int ID = 4211;
 
@@ -113,4 +113,5 @@ public class GatewayService extends Service {
             .build();
     }
 }
+
 
