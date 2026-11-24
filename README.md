@@ -68,3 +68,17 @@
 - 本项目只做壳与手机层，网关本身来自 [magpie](https://github.com/yetone/magpie)（MIT, by yetone）。
 
 MIT.
+## 原生界面（native/）
+
+`magpie-app` 是重写中的原生外壳：**不再把控制台塞进 WebView**，四个分栏（首页 / 供应商 / API / 设置）都是系统控件，数据直接读 magpie 自己的配置文件、动作走它的 CLI。
+
+- 首页：网关状态 + 顶栏开关 + 供应商/密钥/端口统计 + 本地 API 地址（复制、打开控制台）
+- 供应商：读 `providers.json`，卡片显示名称、模型数、host
+- API：`自己建 API，跑在本机`，密钥卡片（创建/删除/测试），底部内联新建
+- 设置：端口、局域网开关、诊断、高级控制台（WebView 兜底）
+
+构建（同样不需要 Gradle，走 SDK 工具链）：
+
+    powershell -File native\build.ps1 -Sdk C:\Android\sdk
+
+模拟器验证：`android-env-cn` 那套脚本（计划任务 + `-no-window`）启动 AVD，`device.ps1 -Action shot` 截图；真机 `adb install -r build\magpie-app.apk`。
